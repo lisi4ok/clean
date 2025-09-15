@@ -20,6 +20,22 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+# # Vite.js for Rails [https://vite-ruby.netlify.app/] [https://github.com/vitejs/vite-rails]
+gem "vite_rails", "~> 3.0"
+# Inertia.js for Rails [https://github.com/inertiajs/inertia-rails] [https://inertiajs.com]
+gem "inertia_rails", "~> 3.11"
+
+=begin Rails CSS And JS bundles
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem "jsbundling-rails"
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+#gem "turbo-rails"
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "cssbundling-rails"
+=end
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
