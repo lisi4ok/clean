@@ -35,6 +35,10 @@
 # Gem: rbs collection
 .gem_rbs_collection
 
+
+# Test Coverage
+/coverage
+
 # IDE
 /.fleet
 /.idea
