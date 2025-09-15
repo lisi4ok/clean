@@ -22,3 +22,26 @@
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+
+/node_modules
+
+# Data
+/data
+*.sqlite
+*.db
+
+# Package managers lock
+#*.lock
+#*.lockb
+#*-lock.json
+
+# Gem: rbs collection
+.gem_rbs_collection
+
+# IDE
+/.fleet
+/.idea
+/.vscode
+
+# Zed
+/.zed

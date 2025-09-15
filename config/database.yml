@@ -3,7 +3,7 @@
 # Install the pg driver:
 #   gem install pg
 # On macOS with Homebrew:
-#   gem install pg -- --with-pg-config=/opt/homebrew/bin/pg_config
+#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
 # On Windows:
 #   gem install pg
 #       Choose the win32 build.
@@ -13,22 +13,27 @@
 # gem "pg"
 #
 default: &default
-  adapter: postgresql
+  adapter: <%= ENV.fetch("DATABASE_ADAPTER") { 'postgresql' } %>
   encoding: unicode
+  host: <%= ENV.fetch("DATABASE_HOST") { '127.0.0.1' } %>
+  port: <%= ENV.fetch("DATABASE_PORT") { 5432 } %>
+  database: <%= ENV.fetch("DATABASE_DATABASE") { 'postgres' } %>
+  username: <%= ENV.fetch("DATABASE_USERNAME") { 'postgres' } %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { 'postgres' } %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 
 development:
   <<: *default
-  database: clean_development
+  #  database: rails_poll_development
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: clean
+  #username: rails_poll
 
   # The password associated with the PostgreSQL role (username).
   #password:
@@ -56,7 +61,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: clean_test
+#  database: rails_poll_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -75,26 +80,24 @@ test:
 #   production:
 #     url: <%= ENV["MY_APP_DATABASE_URL"] %>
 #
-# Connection URLs for non-primary databases can also be configured using
-# environment variables. The variable name is formed by concatenating the
-# connection name with `_DATABASE_URL`. For example:
-#
-#   CACHE_DATABASE_URL="postgres://cacheuser:cachepass@localhost/cachedatabase"
-#
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
 production:
   primary: &primary_production
     <<: *default
-    database: clean_production
-    username: clean
-    password: <%= ENV["CLEAN_DATABASE_PASSWORD"] %>
+  #    database: rails_poll_production
+  #    username: rails_poll
+  #    password: <%#= ENV["DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: clean_production_cache
+    database: rails_poll_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: clean_production_queue
+    database: rails_poll_production_queue
     migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: rails_poll_production_cable
+    migrations_paths: db/cable_migrate

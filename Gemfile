@@ -10,10 +10,10 @@ gem "puma", ">= 5.0"
 gem "jbuilder"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Use the database-backed adapters for Rails.cache and Active Job
 gem "solid_cache"
@@ -35,6 +35,9 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
+  # Combine pry with byebug [https://github.com/deivid-rodriguez/pry-byebug]
+  # gem "pry-byebug"
+
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false
 
@@ -43,9 +46,32 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Load environment variables from .env into ENV [https://github.com/bkeepers/dotenv]
+  gem "dotenv"
+
+  # Faker [https://github.com/faker-ruby/faker]
+  gem "faker"
+
+  # Factory Bot Rails [https://github.com/faker-ruby/faker]
+  gem "factory_bot_rails"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+end
+
+group :test do
+  # RSpec [https://rspec.info] [https://github.com/rspec/rspec-rails]
+  gem "rspec-rails", "~> 8.0.2"
+
+  # Database cleaner [https://github.com/rails/web-console]
+  gem "database_cleaner"
+
+  # You can seamlessly choose between Selenium, Webkit or pure Ruby drivers. [https://github.com/teamcapybara/capybara]
+  gem "capybara"
+
+  # Code coverage [https://github.com/simplecov-ruby/simplecov]
+  gem "simplecov", require: false
 end
