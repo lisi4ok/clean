@@ -18,6 +18,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Use the database-backed adapters for Rails.cache and Active Job
 gem "solid_cache"
 gem "solid_queue"
+gem "solid_cable"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -66,10 +67,17 @@ group :test do
   # RSpec [https://rspec.info] [https://github.com/rspec/rspec-rails]
   gem "rspec-rails", "~> 8.0.2"
 
+  # Test Controllers [https://github.com/rails/rails-controller-testing]
+  gem "rails-controller-testing"
+
   # Database cleaner [https://github.com/rails/web-console]
   gem "database_cleaner"
 
-  # You can seamlessly choose between Selenium, Webkit or pure Ruby drivers. [https://github.com/teamcapybara/capybara]
+  # See [https://github.com/thoughtbot/shoulda-matchers]
+  gem "shoulda-matchers", "~> 6.0"
+
+  # You can seamlessly choose between Selenium, Webkit or pure Ruby drivers.
+  # [https://github.com/teamcapybara/capybara]
   gem "capybara"
 
   # Code coverage [https://github.com/simplecov-ruby/simplecov]
