@@ -95,8 +95,4 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-
-  # This will disable rspec-rails implicit wrapping of tests in a database transaction.
-  # Without disabling this, none of the following configurations will matter.
-  config.use_transactional_fixtures = false
 end
